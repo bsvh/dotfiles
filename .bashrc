@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export DEBFULLNAME="Brendan Van Hook"
 export DEBEMAIL="brendan@vastactive.com"
 source ~/srcs/alacritty/extra/completions/alacritty.bash
