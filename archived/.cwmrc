@@ -1,0 +1,56 @@
+command term            "urxvt"
+command browser         "firefox -new-instance -P default"
+command torbrowser      "firefox -new-instance -P tor"
+command top             "urxvt -e top"
+
+bind CM-b               "firefox -new-instance -P default"
+bind CM-p               "firefox -new-instance -P private"
+bind CMS-Return         "env LIGHTBG=1 urxvt --loginShell -bg white -fg black"
+bind CMS-l 		"i3lock -n -i ~/.background.png"
+
+bind 4-Return		"/usr/bin/urxvtcd"
+bind 4-w delete
+bind 4-m maximize
+bind 4-1 grouponly1
+bind 4-2 grouponly2
+bind 4-3 grouponly3
+bind 4-4 grouponly4
+bind 4-5 grouponly5
+bind 4-6 grouponly6
+bind 4-7 grouponly7
+bind 4-8 grouponly8
+bind 4-9 grouponly9
+bind M-F1 grouponly1
+bind M-F2 grouponly2
+bind M-F3 grouponly3
+bind M-F4 grouponly4
+bind M-F5 grouponly5
+bind M-F6 grouponly6
+bind M-F7 grouponly7
+bind M-F8 grouponly8
+bind M-F9 grouponly9
+bind 4S-1 movetogroup1
+bind 4S-2 movetogroup2
+bind 4S-3 movetogroup3
+bind 4S-4 movetogroup4
+bind 4S-5 movetogroup5
+bind 4S-6 movetogroup6
+bind 4S-7 movetogroup7
+bind 4S-8 movetogroup8
+bind 4S-9 movetogroup9
+bind MS-F1 movetogroup1
+bind MS-F2 movetogroup2
+bind MS-F3 movetogroup3
+bind MS-F4 movetogroup4
+bind MS-F5 movetogroup5
+bind MS-F6 movetogroup6
+bind MS-F7 movetogroup7
+bind MS-F8 movetogroup8
+bind MS-F9 movetogroup9
+
+ignore tint2
+gap 28 0 0 0
+
+moveamount 5
+sticky yes
+

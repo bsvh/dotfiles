@@ -1,0 +1,61 @@
+## URLs                                                                                                                                                                    
+color body brightgreen default "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color body brightgreen default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+## Email addresses.                                                                                                                                                       
+color body brightgreen default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+# general colors
+color normal           default          default
+color attachment       brightyellow     default
+color indicator        black            red
+color markers          brightred        default
+color quoted           green            default
+color signature        cyan             default
+color status           cyan             default
+color tilde            blue             default
+color tree             red              default
+
+# header special colors
+
+color hdrdefault       cyan             default  
+color header           brightblue       default     ^From:
+color header           green            default     ^Cc:
+color header           magenta          default     ^X
+color header           brightblue       default     ^Subject:
+color header           brightblue       default     ^Organization:    
+color header           brightblue       default     ^Reply
+color header           green            default     ^From
+color header           magenta          default     ^X-Mailer:
+color header           brightblue       default     ^To:
+color header           magenta          default     ^X-Mailing-List:
+color header           green            default     ^Date:
+
+
+# quotings
+color quoted           blue             default
+color quoted1          magenta          default
+color quoted2          red              default
+color quoted3          green            default
+color quoted4          cyan             default
+color quoted5          blue             default
+color quoted6          magenta          default
+color quoted7          red              default
+
+## Index
+# New Mail
+color index            green            default     "~N"   
+# Flagged
+color index            magenta          default     "~F"   
+# Deleted
+color index            red              default     "~D(!~p|~p)"   
+# Collapsed thread with no unread
+color index            brightwhite      default     "~v~(!~N)"   
+# Collapsed thread with some unread
+color index            brightgreen      default     "~v~(~N)"   
+# Collapsed thread flagged with no unread
+color index            brightmagenta    default     "~v~(~F)!~N"   
+
+# vim: ft=muttrc

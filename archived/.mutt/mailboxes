@@ -1,0 +1,5 @@
+# -*-muttrc-*-
+
+mailboxes +Inbox +Finance +Logs +Logs/Backup +Logs/System +Logs/DMARC +Old +OpenBSD +Ports +School +Terpmail +Archive +Drafts +Local +Sent +Spam +Trash
+
+# vim: ft=muttrc

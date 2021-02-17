@@ -1,0 +1,10 @@
+set from = brendan@vastactive.com
+alternates @vastactive.com
+
+set signature = ~/.mutt/bsvh.sig
+
+set pgp_autosign = no
+set pgp_replyencrypt = yes
+set pgp_sign_as = 0x45DFA2FFD281740F
+
+# vim: ft=muttrc

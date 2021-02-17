@@ -1,0 +1,92 @@
+# General
+set folder = "~/mail"
+set spoolfile = "+Inbox"
+set wait_key = no           # Don't ask to return to mutt.
+set delete                  # Don't ask to delete mail.
+unset confirmappend         # Don't ask to move mail.
+set trash = "+Trash"        # Use local trash for all mail.
+set query_command = "abook --mutt-query '%s'"
+macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add to contacts"
+bind editor <Tab> complete-query
+unset user_agent            # Don't set the User-Agent header.
+set header_cache = ~/.cache/mutt
+set sendmail="/usr/bin/msmtp --auto-from=on"
+
+
+# Compose
+set realname = "Brendan Van Hook"
+
+set editor = "vim"
+set edit_headers            # Show headers while composing.
+set askcc                   # Ask for Ccs when composing.
+set fcc_attach              # Save attachments for outgoing mail.
+set reply_to                # Reply to Reply-to: field of header.
+set reverse_name            # Reply using email address sent to.
+set include                 # Include message in reply.
+unset forward_quote         # Don't quote forwarded messages.
+set send_charset = "utf-8"
+set record = "+Sent"        # Use local sent folder for all mail.
+set postponed = "+Drafts"    # Use local drafts folder for all mail.
+unmy_hdr *                  # Remove extra headers.
+
+# Headers
+# Ignore all headers except following when reading mail
+ignore *
+unignore from: to: cc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: date: subject:
+
+# Status Bar
+set status_chars  = " *%A"
+set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---"
+
+# Index View
+set sort = threads
+set sort_aux = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+unset mark_old
+bind index gg first-entry
+bind index G last-entry
+bind index <space> collapse-thread
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+macro index Z "<shell-escape>fmm<enter><refresh>" "sync mail"
+macro index,pager \Ca "<save-message>+Archive<enter>" "move mail to archive folder"
+macro index,pager \Cl "<save-message>+Logs/DMARC<enter>" "move mail to DMARC folder"
+macro index S "<save-message>+Spam<enter>" "move mail to spam folder"
+
+# Pager View
+set pager_index_lines = 5   # List <n> emails above current message.
+set pager_context = 3       # Show <n> lines of previous page.
+set pager_stop              # Don't move to next email when end is reached.
+unset markers
+bind pager k previous-line  
+bind pager j next-line
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
+source ~/.mutt/mailboxes
+source ~/.mutt/sidebar.rc
+source ~/.mutt/gpg.rc
+source ~/.mutt/colors.rc
+source ~/.mutt/bsvh.rc
+source ~/.mutt/mailinglists
+
+message-hook '~t bsvh\.me$' 'source ~/.mutt/bsvh.rc'
+message-hook '~t vastactive\.com$' 'source ~/.mutt/vastactive.rc'
+send-hook '~t @.*\.umd\.edu' set signature=~/.mutt/umd.sig
+send-hook '~t @umd\.edu' set signature=~/.mutt/umd.sig
+folder-hook "+umd/*" source ~/.mutt/umd.rc
+
+# Attachment Handling
+set implicit_autoview
+auto_view text/html
+set mailcap_path="~/.mutt/mailcap"
+
+# GPG
+set crypt_verify_sig = yes
+set pgp_auto_decode = yes
+set pgp_autoinline = yes
+
+
+# vim: ft=muttrc
