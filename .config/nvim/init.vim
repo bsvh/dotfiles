@@ -1,6 +1,7 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !mkdir -p ~/.local/share/nvim/backup ~/.local/share/nvim/swap
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -23,6 +24,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 
 " Completion/Snips
+Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete-clangx'
@@ -36,6 +38,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'Plasticboy/vim-markdown'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'Lenovsky/nuake'
 
 call plug#end()
 
@@ -68,7 +72,29 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set splitbelow
 set splitright
-nnoremap <Space><Space> :noh<CR>
+set textwidth=0
+set undofile
+set backup
+set backupdir=~/.local/share/nvim/backup
+set directory=~/.local/share/nvim/swap
+set spelllang=en_us
+set hidden
+set wildmode=longest:list,full
+set omnifunc=syntaxcomplete#Complete
+set cursorline
+set nowrap
+set colorcolumn=80
+set foldenable
+set foldmethod=syntax
+set ww=b,s,h,l,<,>,[,]                  " left/right/h/l can change lines
+
+" Search
+set hlsearch
+set incsearch
+set smartcase
+
+
+let g:black_linelength = 80
 
 let g:deoplete#enable_at_startup = 1
 let g:gutentags_cache_dir = expand('~/.cache/nvim/ctags/')
@@ -146,5 +172,16 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 nmap <C-h> <C-w>h 
 
+map <space> <Leader>
+
+" Space bar un-highligts search
+noremap <silent> <leader><Space> :silent noh<Bar>echo<CR>
+
+" Writing to files with root priviledges
+cmap w!! w !sudo tee % > /dev/null
+
 " Plugins
 nmap <F8> :TagbarToggle<CR>
+nnoremap <F4> :Nuake<CR>
+inoremap <F4> <C-\><C-n>:Nuake<CR>
+tnoremap <F4> <C-\><C-n>:Nuake<CR>
