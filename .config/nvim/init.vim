@@ -40,6 +40,7 @@ Plug 'godlygeek/tabular'
 Plug 'Plasticboy/vim-markdown'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'Lenovsky/nuake'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
